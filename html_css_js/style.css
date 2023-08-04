@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "JMH Typewriter";
+    src: url(https://www.dafont.com/jmh-typewriter.font);
+}
+
+* {margin: 0; padding: 0;}
+html, body {height: 100dvh; width: 100dvw;}
