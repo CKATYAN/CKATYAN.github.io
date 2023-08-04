@@ -2,10 +2,10 @@
 body {padding: 0 11% 0 11%;}
 
 .header {
-    
-    
-    .menu {
-        display: flex;
+    display: flex;
+    flex-direction: column;
+    .menu {      
+        display: flex; 
         flex-direction: row;
         justify-content: space-between;
     }
