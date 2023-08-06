@@ -1,13 +1,37 @@
 * {margin: 0; padding: 0; font-family: "JMH Typewriter";}
-body {padding: 0 11% 0 11%;}
+body {padding: 0 12% 0 12%;}
+
+:root{
+    /* font properties */
+    --header-top-font-size: 2dvw;
+    --header-top-font-weight: 250;
+    --header-bottom-font-size: 6.5dvw;
+    --header-bottom-font-weight: 700;
+}
 
 .header {
+    padding-top: 4dvh;
     display: flex;
     flex-direction: column;
-    .menu {      
+    gap: 4.5dvh;
+    .top, .bottom {      
         display: flex; 
         flex-direction: row;
         justify-content: space-between;
+        align-items: baseline;
+        & a {
+            text-decoration: none;
+            color: black;
+            font-size: var(--header-top-font-size);
+            font-weight: var(--header-top-font-weight);
+        }
+        #pagename {
+            font-size: var(--header-bottom-font-size);
+            font-weight: var(--header-bottom-font-weight);
+        }
+        #copy {
+            width: calc(var(--header-bottom-font-size)/2.4);
+        }
     }
 }
 
