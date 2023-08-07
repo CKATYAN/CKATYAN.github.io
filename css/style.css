@@ -4,40 +4,35 @@
     /* font properties */
     --header-top-font-size: clamp(1rem, 1vw + 1rem, 3rem);
     --header-top-font-weight: 250;
-    --header-bottom-font-size: clamp(1rem, 5vw + 1rem, 7rem);
+    --header-bottom-font-size: clamp(1rem, 5.5vw + 1rem, 8rem);
     --header-bottom-font-weight: 700;
 }
 
 body {
     height: 100dvh;
     padding: 0 12% 0 12%;
-    background-image: url(../images/bg.png);
+    background-image: url("../images/bg.png");
     background-size: cover;
 }
 
-.header {
+[class*="header"] {     
     padding-top: 4dvh;
-    display: flex;
-    flex-direction: column;
-    gap: 4.5dvh;
-    .top, .bottom {      
-        display: flex; 
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-        & a {
-            text-decoration: none;
-            color: black;
-            font-size: var(--header-top-font-size);
-            font-weight: var(--header-top-font-weight);
-        }
-        #pagename {
-            font-size: var(--header-bottom-font-size);
-            font-weight: var(--header-bottom-font-weight);
-        }
-        #copy {
-            width: calc(var(--header-bottom-font-size)/2.4);
-        }
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    & a {
+        text-decoration: none;
+        color: black;
+        font-size: var(--header-top-font-size);
+        font-weight: var(--header-top-font-weight);
+    }
+    #pagename {
+        font-size: var(--header-bottom-font-size);
+        font-weight: var(--header-bottom-font-weight);
+    }
+    #copyicon {
+        width: calc(var(--header-bottom-font-size)/2.4);
     }
 }
 
