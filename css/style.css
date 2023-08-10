@@ -1,38 +1,60 @@
-* {margin: 0; padding: 0; font-family: "JMH Typewriter";}
-
 :root{
     /* font properties */
+    font-family: "JMH Typewriter";
     --header-top-font-size: clamp(1rem, 1vw + 1rem, 3rem);
     --header-top-font-weight: 250;
     --header-bottom-font-size: clamp(1rem, 5.5vw + 1rem, 8rem);
     --header-bottom-font-weight: 700;
+    --content-font-size: clamp(1rem, 1.5vw + 1rem, 3rem);
+    --content-font-weight: 700;
+}
+
+*, *::before, *::after {
+    /* all HTML tags have own padding&margin, thus We should remove it */
+    margin: 0; padding: 0;
 }
 
 body {
-    height: 100dvh;
-    padding: 0 12% 0 12%;
+    padding: 0 12vw 0 12dvw;
+
     background-image: url("../images/bg.png");
     background-size: cover;
+    background-attachment: fixed;
 }
 
-[class*="header"] {     
-    padding-top: 4dvh;
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    & a {
-        text-decoration: none;
-        color: black;
-        font-size: var(--header-top-font-size);
-        font-weight: var(--header-top-font-weight);
-    }
-    #pagename {
-        font-size: var(--header-bottom-font-size);
-        font-weight: var(--header-bottom-font-weight);
-    }
-    #copyicon {
-        width: calc(var(--header-bottom-font-size)/2.4);
+.header-fixed-container {
+    position: sticky; top: 0;
+    background: inherit;
+    .header-top, .header-bottom {
+        padding-top: 4dvh;
+
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        & a {
+            text-decoration: none; color: black;
+            font-size: var(--header-top-font-size);
+            font-weight: var(--header-top-font-weight);
+        }
+        #pagename {
+            font-size: var(--header-bottom-font-size);
+            font-weight: var(--header-bottom-font-weight);
+        }
+        #copyicon {
+            width: calc(var(--header-bottom-font-size)/2.4);
+        }
     }
 }
 
+.content {
+    text-align: justify;
+    font-size: var(--content-font-size);
+    font-weight: var(--content-font-weight);
+}
+
+.footer {
+    position: sticky; bottom: 0;
+    width: inherit; height: 8dvh;
+    background: inherit;
+}
