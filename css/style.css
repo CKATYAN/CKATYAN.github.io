@@ -1,4 +1,8 @@
 :root{
+    /* padding */
+    --default-padding: 4dvh;
+    --leftright-padding: 12dvw;
+
     /* font properties */
     font-family: "JMH Typewriter";
     --header-top-font-size: clamp(1rem, 1vw + 1rem, 3rem);
@@ -15,18 +19,18 @@
 }
 
 body {
-    padding: 0 12vw 0 12dvw;
+    padding: 0 var(--leftright-padding) 0 var(--leftright-padding);
 
     background-image: url("../images/bg.png");
-    background-size: cover;
     background-attachment: fixed;
+    background-size: cover;
 }
 
-.header-fixed-container {
+.header-sticky-container {
     position: sticky; top: 0;
     background: inherit;
     .header-top, .header-bottom {
-        padding-top: 4dvh;
+        padding-top: var(--default-padding);
 
         display: flex; 
         flex-direction: row;
@@ -42,19 +46,22 @@ body {
             font-weight: var(--header-bottom-font-weight);
         }
         #copyicon {
-            width: calc(var(--header-bottom-font-size)/2.4);
+            width: calc((10/24)*var(--header-bottom-font-size));
         }
+    }
+    .empty-space-container {
+        padding-bottom: var(--default-padding);
     }
 }
 
-.content {
+.content-scrollable-container {
     text-align: justify;
     font-size: var(--content-font-size);
     font-weight: var(--content-font-weight);
 }
 
-.footer {
+.footer-sticky-container {
     position: sticky; bottom: 0;
-    width: inherit; height: 8dvh;
+    width: inherit; height: calc(2*var(--default-padding));
     background: inherit;
 }
