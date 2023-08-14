@@ -1,17 +1,48 @@
-const homeUrl = window.location.origin
-console.log(homeUrl)
+function loadJSON() {
+    console.log("loaded")
+    const request = new Request("../json/siteLocalisation.json");
+    fetch(request)
+        .then(response => response.json())
+        .then(data => postSiteContent(data))
+        .catch(console.error)
+}
+window.addEventListener("load", loadJSON, false)
 
-var writeHeaderBottom = (event) => {
-    switch (window.location.href) {
-        case (homeUrl + "/#about"):
-            document.getElementById("pagename").textContent="About project"
+function postSiteContent(data) { 
+    const header = document.getElementsByTagName("a")
+    for (const index in Array.from(header)) {
+        header[index].textContent = data.english[index]
+    }
+}
+
+function changeTextContent(id,content) {
+    if(typeof content  === 'string') {
+        document.getElementById(id).textContent = content
+    } else {
+        console.error(`Argument("${content}") type of "changePageName" function is not "string".`)
+    }
+}
+
+function userHeaderActionsHandler(id) {
+    console.log(id, "clicked")
+    switch (id) {
+        case ("siteName"):
+            changeTextContent("pageName","Lorem ipsum")
             break
-        case (homeUrl + "/#contact"):
-            document.getElementById("pagename").textContent="Contact"
+        case ("about"):
+            changeTextContent("pageName","About project")
+            break
+        case ("contact"):
+            changeTextContent("pageName","Contact")
+            break
+        case ("copyIcon"):
+            changeTextContent("pageName","Copied")
+            setTimeout(() => changeTextContent("pageName","Lorem ipsum"),1000)
             break
     }
 }
-window.addEventListener("hashchange", writeHeaderBottom, false)
-window.addEventListener("load", writeHeaderBottom, false)
 
-
+const header = document.querySelectorAll("a, img")
+Array.from(header).forEach(element => {
+    element.addEventListener("click", () => userHeaderActionsHandler(element.id))
+});

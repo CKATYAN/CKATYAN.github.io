@@ -1,16 +1,19 @@
 :root{
+    /* color */
+    --color-default: black;
+    --color-dropshadow: rgba(0, 0, 0, 0.50);
+
     /* padding */
-    --default-padding: 4dvh;
-    --leftright-padding: 12dvw;
+    --padding-default: 4dvh;
+    --padding-leftright: 12dvw;
 
     /* font properties */
     font-family: "JMH Typewriter";
-    --header-top-font-size: clamp(1rem, 1vw + 1rem, 3rem);
-    --header-top-font-weight: 250;
-    --header-bottom-font-size: clamp(1rem, 5.5vw + 1rem, 8rem);
-    --header-bottom-font-weight: 700;
-    --content-font-size: clamp(1rem, 1.5vw + 1rem, 3rem);
-    --content-font-weight: 700;
+    --font-size-default: clamp(1rem, 1vw + 1rem, 3rem);
+    --font-size-accent: clamp(1rem, 5.5vw + 1rem, 8rem);
+
+    --font-weight-default: 250;
+    --font-weight-accent: 700;
 }
 
 *, *::before, *::after {
@@ -19,49 +22,62 @@
 }
 
 body {
-    padding: 0 var(--leftright-padding) 0 var(--leftright-padding);
+    padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
 
     background-image: url("../images/bg.png");
     background-attachment: fixed;
     background-size: cover;
 }
 
-.header-sticky-container {
+.header-stickyContainer {
     position: sticky; top: 0;
     background: inherit;
-    .header-top, .header-bottom {
-        padding-top: var(--default-padding);
+
+    .header-topPartContainer, .header-bottomPartContainer {
+        padding-top: var(--padding-default);
 
         display: flex; 
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
+
         & a {
-            text-decoration: none; color: black;
-            font-size: var(--header-top-font-size);
-            font-weight: var(--header-top-font-weight);
+            text-decoration: none; color: var(--color-default);
+            font-size: var(--font-size-default);
+            font-weight: var(--font-weight-default);
+
+            &:hover {
+                text-shadow:  0px 5px 5px var(--color-dropshadow);
+            }
         }
-        #pagename {
-            font-size: var(--header-bottom-font-size);
-            font-weight: var(--header-bottom-font-weight);
+
+        #pageName {
+            font-size: var(--font-size-accent);
+            font-weight: var(--font-weight-accent);
         }
-        #copyicon {
-            width: calc((10/24)*var(--header-bottom-font-size));
+
+        #copyIcon {
+            width: calc((10/24)*var(--font-size-accent));
+
+            &:hover {
+                filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
+            }
         }
     }
-    .empty-space-container {
-        padding-bottom: var(--default-padding);
+
+    .emptySpaceContainer {
+        padding-bottom: var(--padding-default);
     }
 }
 
-.content-scrollable-container {
+.content-scrollableContainer {
     text-align: justify;
-    font-size: var(--content-font-size);
-    font-weight: var(--content-font-weight);
+    font-size: var(--font-size-default);
+    font-weight: var(--font-weight-accent);
 }
 
-.footer-sticky-container {
+.footer-stickyContainer {
     position: sticky; bottom: 0;
-    width: inherit; height: calc(2*var(--default-padding));
+    width: inherit; height: calc(2*var(--padding-default));
     background: inherit;
 }
