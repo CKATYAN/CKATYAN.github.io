@@ -9,7 +9,7 @@
 
     /* font properties */
     font-family: "JMH Typewriter";
-    --font-size-default: clamp(1rem, 1vw + 1rem, 3rem);
+    --font-size-default: clamp(1rem, 1.5vw + 1rem, 3rem);
     --font-size-accent: clamp(1rem, 5.5vw + 1rem, 8rem);
 
     --font-weight-default: 250;
@@ -22,6 +22,7 @@
 }
 
 body {
+    scroll-behavior: unset;
     padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
 
     background-image: url("../images/bg.png");
@@ -45,10 +46,6 @@ body {
             text-decoration: none; color: var(--color-default);
             font-size: var(--font-size-default);
             font-weight: var(--font-weight-default);
-
-            &:hover {
-                text-shadow:  0px 5px 5px var(--color-dropshadow);
-            }
         }
 
         #pageName {
@@ -58,10 +55,6 @@ body {
 
         #copyIcon {
             width: calc((10/24)*var(--font-size-accent));
-
-            &:hover {
-                filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
-            }
         }
     }
 
@@ -80,4 +73,15 @@ body {
     position: sticky; bottom: 0;
     width: inherit; height: calc(2*var(--padding-default));
     background: inherit;
+}
+
+a, img {
+    &:hover{
+        cursor: pointer;
+        filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
+    }
+}
+
+#about, #contact {
+    /* Hide it */
 }

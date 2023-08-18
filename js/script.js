@@ -1,48 +1,66 @@
-function loadJSON() {
-    console.log("loaded")
-    const request = new Request("../json/siteLocalisation.json");
+import * as cookieModule from "./cookieScript.js"
+
+window.addEventListener("load", () => {
+    console.log("trying to load")
+    const request = new Request("../json/site_content.json")
     fetch(request)
         .then(response => response.json())
-        .then(data => postSiteContent(data))
+        .then(data => uploadSiteContent(data))
         .catch(console.error)
-}
-window.addEventListener("load", loadJSON, false)
+}, false)
 
-function postSiteContent(data) { 
+const uploadSiteContent = data => {
+    let language = document.documentElement.lang
+    const cookie = cookieModule.get("language")
+    if (cookie) {
+        language = cookie
+        document.documentElement.lang = cookie
+    }
     const header = document.getElementsByTagName("a")
     for (const index in Array.from(header)) {
-        header[index].textContent = data.english[index]
+        header[index].textContent = data[language].header[index]
     }
+    // TO DO: should i load all stuff, or exist a way to load in parts
+    document.getElementById("about").innerHTML = data[language].about
+    document.getElementById("contact").innerHTML = data[language].contact
 }
 
-function changeTextContent(id,content) {
-    if(typeof content  === 'string') {
-        document.getElementById(id).textContent = content
-    } else {
-        console.error(`Argument("${content}") type of "changePageName" function is not "string".`)
-    }
+document.addEventListener("click", (element) => {
+    const {target} = element
+    if (target.matches("img")) userCopyActionHandler(target.id)
+    if (target.matches("a")) userHeaderActionsHandler(target.id)
+    element.preventDefault()
+    return
+})
+
+const userCopyActionHandler = id => {
+    if (id != "copyIcon") return
+    document.getElementById("pageName").textContent = "Copied"
+    setTimeout(() => document.getElementById("pageName").textContent = "Lorem ipsum",1000)
 }
 
-function userHeaderActionsHandler(id) {
-    console.log(id, "clicked")
-    switch (id) {
-        case ("siteName"):
-            changeTextContent("pageName","Lorem ipsum")
-            break
-        case ("about"):
-            changeTextContent("pageName","About project")
-            break
-        case ("contact"):
-            changeTextContent("pageName","Contact")
-            break
-        case ("copyIcon"):
-            changeTextContent("pageName","Copied")
-            setTimeout(() => changeTextContent("pageName","Lorem ipsum"),1000)
-            break
-    }
+const userHeaderActionsHandler = id => {
+    const object = {
+        "homeLink": () => location.reload(),
+        "aboutLink": () => openAbout(),
+        "contactLink": () => history.replaceState({}, "", "#contact"),
+        "langSwitch": () => switchLanguage()
+    }[id]()
 }
 
-const header = document.querySelectorAll("a, img")
-Array.from(header).forEach(element => {
-    element.addEventListener("click", () => userHeaderActionsHandler(element.id))
-});
+const openAbout = () => {
+    history.replaceState({}, "", "#about")
+    document.getElementById("pageName").textContent = "About project"
+    // TO DO: should i use it?
+}
+
+const switchLanguage = () => {
+    let language = document.documentElement.lang
+    const object = {
+        "en": () => language = "ru",
+        "ru": () => language = "en"
+    }[language]()
+
+    cookieModule.set("language", language, 7)
+    location.reload()
+}
