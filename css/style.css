@@ -25,7 +25,7 @@ body {
     scroll-behavior: unset;
     padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
 
-    background-image: url("../images/bg.png");
+    background-image: url("../images/bg.avif");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -64,9 +64,12 @@ body {
 }
 
 .content-scrollableContainer {
-    text-align: justify;
-    font-size: var(--font-size-default);
-    font-weight: var(--font-weight-accent);
+    content-visibility: auto;
+    #content {
+        text-align: justify;
+        font-size: var(--font-size-default);
+        font-weight: var(--font-weight-accent);
+    }
 }
 
 .footer-stickyContainer {
@@ -80,8 +83,4 @@ a, img {
         cursor: pointer;
         filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
     }
-}
-
-#about, #contact {
-    /* Hide it */
 }
