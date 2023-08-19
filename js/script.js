@@ -10,6 +10,7 @@ const downloadJSON = (language = "en") => {
         .then(response => response.json())
         .then(data => {
             localizedData = data[language]
+            generateLorem()
             uploadHeader()
             checkCurrentHashLocation()
         })
@@ -26,7 +27,11 @@ const uploadHeader = () => {
 const checkCurrentHashLocation = () => {
     if(!window.location.hash) return
     document.getElementById("pageName").textContent = localizedData.pageName[window.location.hash]
-    document.getElementById("content").innerHTML= localizedData[window.location.hash]
+    document.getElementById("content").innerHTML = localizedData[window.location.hash]
+}
+
+const generateLorem = () => {
+    document.getElementById("content").innerHTML = "Lorem ipsum bluh bluh"
 }
 
 const userCopyActionHandler = () => {
