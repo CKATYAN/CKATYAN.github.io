@@ -8,7 +8,7 @@ export function set(name, value, days) {
         date = new Date(date).toUTCString()
     }
 
-    document.cookie = `${name}=${value}; expires=${date}; path=/; samesite=none ; secure`
+    document.cookie = `${name}=${value}; expires=${date}; path=/; samesite=none; secure`
 }
 
 export function get(name) {
@@ -19,7 +19,5 @@ export function get(name) {
 }
 
 export function del(name) {
-    setCookie(name, "", {
-      'max-age': -1
-    })
+    document.cookie = `${name}=""; max-age = -1; path=/; samesite=none; secure`
 }
