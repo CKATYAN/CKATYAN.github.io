@@ -9,6 +9,8 @@
 
     /* font properties */
     font-family: "JMH Typewriter";
+    font-display: fallback;
+
     --font-size-default: clamp(1rem, 1.5vw + 1rem, 3rem);
     --font-size-accent: clamp(1rem, 5.5vw + 1rem, 8rem);
 

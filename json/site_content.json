@@ -2,6 +2,7 @@
     "en" : {
         "header" : ["Lorem", "about project", "contact", "русский"],
         "pageName" : {
+            "/" : "Lorem ipsum",
             "#about" : "About project",
             "#contact" : "Contact" 
         },
@@ -11,6 +12,7 @@
     "ru" : {
         "header" : ["Lorem", "о проекте", "контакты", "english"],
         "pageName" : {
+            "/" : "Lorem ipsum",
             "#about" : "О проекте",
             "#contact" : "Контакты" 
         },

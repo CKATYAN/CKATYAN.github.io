@@ -9,65 +9,75 @@ const getJSON = async () => {
         .catch(console.error)
 }
 
-const siteStart = () => {
-    setLanguage()
-    setHeader()
-    checkLocation()
+const getLanguage = () => {
+    return cookieModule.get("language") ?? "en"
 }
 
-const setLanguage = () => {
-    console.log(cookieModule.get("language"));
-    const language = cookieModule.get("language") ?? "en"
-    document.documentElement.lang = language
-}
-
-const setHeader = async () => {
+const init = async () => {
     const content = await getJSON()
-    const language = document.documentElement.lang
-    const header = document.getElementsByTagName("a")
+    const language = getLanguage()
 
+    setHeader(content[language])
+    setSite(content, language, window.location.hash || "/")
+}
+
+const setHeader = localizedContent => {
+    const header = document.getElementsByTagName("a")
     for (const index in Array.from(header)) {
-        header[index].textContent = content[language].header[index]
+        header[index].textContent = localizedContent.header[index]
     }
 }
 
-const checkLocation = () => {
-    window.location.hash ? hashLocationHandler() : generatePlaceHolderText()
+const setSite = (content, language, location) => {
+    window.history.replaceState({}, "", location)
+    document.getElementById("copyIcon").classList.add("hidden")
+    document.documentElement.lang = language
+
+    document.getElementById("pageName").textContent = content[language].pageName[location]
+    document.getElementById("content").innerHTML = content[language][location]
+
+    if(location == "/") setHomeContent()
 }
 
-const hashLocationHandler = async () => {
-    const content = await getJSON()
-    const language = document.documentElement.lang
-    const copyIcon = document.getElementById("copyIcon")
+const setHomeContent = () => {
+    document.getElementById("copyIcon").classList.remove("hidden")
 
-    copyIcon.matches(".hidden") ? {} : copyIcon.classList.toggle("hidden")
-    document.getElementById("pageName").textContent = content[language].pageName[window.location.hash]
-    document.getElementById("content").innerHTML = content[language][window.location.hash]
-}
-
-const generatePlaceHolderText = () => {
     document.getElementById("content").innerHTML = "Lorem ipsum bluh bluh".repeat(1000)
 }
 
-const userCopyActionHandler = () => {
-    document.getElementById("pageName").textContent = "Copied"
+const userHashChangeActionHandler = async (location) => {
+    window.history.replaceState({}, "", location)
+    setSite(await getJSON(), getLanguage(), location)
+}
+
+const userCopyActionHandler = (language) => {
+    const pageName = {
+        "en": "Copied",
+        "ru": "Скопировано"
+    }
+
+    document.getElementById("pageName").textContent = pageName[language]
     setTimeout(() => document.getElementById("pageName").textContent = "Lorem ipsum",1000)
 }
 
-const userSwitchLanguageActionHandler = () => {
-    const object = {
-        "en": () => cookieModule.set("language", "ru", 7),
-        "ru": () => cookieModule.set("language", "en", 7)
-    }[document.documentElement.lang]()
+const userSwitchLanguageActionHandler = (language) => {
+    const newLanguage = {
+        "en": "ru",
+        "ru": "en"
+    }
 
-    siteStart()
+    cookieModule.set("language", newLanguage[language], 7)
+    init()
 }
 
-window.addEventListener("load", siteStart, false)
-
-window.addEventListener("hashchange", hashLocationHandler)
+window.addEventListener("load", init, false)
 
 document.addEventListener("click", ({target}) => {
-    target.matches("#copyIcon") ? userCopyActionHandler() : {}
-    target.matches("#langSwitch") ? userSwitchLanguageActionHandler() : {}
+    const unused = {
+        "home" : () => userHashChangeActionHandler("/"),
+        "about" : () => userHashChangeActionHandler("#about"),
+        "contact" : () => userHashChangeActionHandler("#contact"),
+        "copyIcon" : () => userCopyActionHandler(getLanguage()),
+        "switchLang": () => userSwitchLanguageActionHandler(getLanguage())
+    }[target.id]?.()
 })
