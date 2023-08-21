@@ -1,4 +1,5 @@
 export function set(name, value, days) {
+    if (!(name || value)) console.error
     name = encodeURIComponent(name)
     value = encodeURIComponent(value)
 

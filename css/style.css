@@ -65,7 +65,6 @@ body {
 }
 
 .content-scrollableContainer {
-    content-visibility: auto;
     #content {
         text-align: justify;
         font-size: var(--font-size-default);
