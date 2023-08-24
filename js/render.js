@@ -5,13 +5,7 @@ const getJSON = async (jsonFilePath) => {
         .catch(console.error)
 }
 
-const getLanguage = async () => {
-    const cookieModule = await import("./cookie.js")
-    // cookieModule.del("language") 
-    return cookieModule.get("language") ?? "en"
-}
-
-const renderHeader = (localizedHeaderContent) => {
+const renderHeader = localizedHeaderContent => {
     const header = document.getElementsByTagName("a")
     for (const index in Array.from(header)) {
         header[index].textContent = localizedHeaderContent[index]
@@ -30,24 +24,32 @@ const renderAbout = localizedAboutContent => {
     document.getElementById("content").innerHTML = localizedAboutContent.content
 }
 
-const renderContact = localizedAboutContent => {
+const renderContact = localizedContactContent => {
     document.getElementById("copyIcon").classList.add("hidden")
 
-    document.getElementById("pageName").textContent = localizedAboutContent.pageName
-    document.getElementById("content").innerHTML = localizedAboutContent.content
+    document.getElementById("pageName").textContent = localizedContactContent.pageName
+    document.getElementById("content").innerHTML = localizedContactContent.content
 }
 
-export async function renderSite() {
-    const content = await getJSON("../json/site_content.json")
-    const language = await getLanguage()
+export function renderSite() {
+    const localizedContent = JSON.parse(sessionStorage.getItem("localizedContent"))
+    const language = sessionStorage.getItem("language")
     const location = window.location.hash || "/"
 
-    document.documentElement.lang = language
-    renderHeader(content[language].header)
-
+    renderHeader(localizedContent.header)
     const object = {
         "/" : () => renderHome(language),
-        "#about" : () => renderAbout(content[language][location]),
-        "#contact" : () => renderContact(content[language][location])
+        "#about" : () => renderAbout(localizedContent[location]),
+        "#contact" : () => renderContact(localizedContent[location])
     }[location]()
+}
+
+export async function init() {
+    const content = await getJSON("../json/site_content.json")
+    const language = await import("./cookie.js").then(module => {return module.get("language") ?? "en"})
+
+    sessionStorage.setItem("localizedContent", JSON.stringify(content[language]))
+    sessionStorage.setItem("language", language)
+
+    renderSite()
 }

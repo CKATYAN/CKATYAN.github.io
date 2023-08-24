@@ -1,11 +1,11 @@
-import { renderSite } from "./render.js"
+import { init } from "./render.js"
 import { 
     userHashChangeActionHandler,
     userCopyActionHandler, 
     userSwitchLanguageActionHandler
 } from "./handlers.js"
 
-window.addEventListener("load", renderSite, false)
+window.addEventListener("load", init, false)
 
 document.addEventListener("click", ({target}) => {
     const unused = {
