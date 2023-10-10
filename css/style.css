@@ -1,10 +1,15 @@
+::selection {
+    text-shadow: 0rem 0.5rem 0.5rem rgb(80, 66, 66);
+    background: inherit;
+  }
+
 :root{
     /* color */
     --color-default: black;
     --color-dropshadow: rgba(0, 0, 0, 0.50);
 
     /* padding */
-    --padding-default: 4dvh;
+    --padding-default: 2dvh;
     --padding-leftright: 12dvw;
 
     /* font properties */
@@ -24,8 +29,6 @@
 }
 
 body {
-    padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
-
     background-image: url("../images/bg.avif");
     background-attachment: fixed;
     background-size: cover;
@@ -34,8 +37,10 @@ body {
 .header-stickyContainer {
     position: sticky; top: 0;
     background: inherit;
+    padding-bottom: var(--padding-default);
 
     .header-topPartContainer, .header-bottomPartContainer {
+        padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
         padding-top: var(--padding-default);
 
         display: flex; 
@@ -58,13 +63,12 @@ body {
             width: calc((10/24)*var(--font-size-accent));
         }
     }
-
-    .emptySpaceContainer {
-        padding-bottom: var(--padding-default);
-    }
 }
 
 .content-scrollableContainer {
+    padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
+    padding-top: var(--padding-default);
+
     #content {
         text-align: justify;
         font-size: var(--font-size-default);
@@ -79,9 +83,9 @@ body {
 }
 
 a, img {
-    &:hover{
-        cursor: pointer;
+    &:hover {
         filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
+        cursor: pointer;
     }
 }
 

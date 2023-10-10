@@ -5,14 +5,17 @@ import {
     userSwitchLanguageActionHandler
 } from "./handlers.js"
 
+// TO DO : check first page load
 window.addEventListener("load", init, false)
 
 document.addEventListener("click", ({target}) => {
-    const unused = {
+    let cases = {  
         "home" : () => userHashChangeActionHandler("/"),
         "about" : () => userHashChangeActionHandler("#about"),
         "contact" : () => userHashChangeActionHandler("#contact"),
         "copyIcon" : () => userCopyActionHandler(),
+        "content" : () => userCopyActionHandler(),
         "switchLang": () => userSwitchLanguageActionHandler()
-    }[target.id]?.()
+    }
+    if (cases[target.id]) cases[target.id]()
 })

@@ -12,9 +12,16 @@ const renderHeader = localizedHeaderContent => {
     }
 }
 
-const renderHome = language => {
+const renderHome = async localizedHomeContent => {
+    document.getElementById("pageName").textContent = localizedHomeContent.pageName
+
     document.getElementById("copyIcon").classList.remove("hidden")
-    document.getElementById("content").innerHTML = "Lorem ipsum bluh bluh".repeat(40)
+    await import("./lorem-ipsum.js").then(module => {
+        document.getElementById("content").textContent = new module.LoremIpsum().generate(75)
+    })
+    // TO DO: try to make russian version
+    // TO DO: try to calculate amount of generated word
+    
 }
 
 const renderAbout = localizedAboutContent => {
@@ -33,15 +40,15 @@ const renderContact = localizedContactContent => {
 
 export function renderSite() {
     const localizedContent = JSON.parse(sessionStorage.getItem("localizedContent"))
-    const language = sessionStorage.getItem("language")
-    const location = window.location.hash || "/"
-
     renderHeader(localizedContent.header)
-    const object = {
-        "/" : () => renderHome(language),
-        "#about" : () => renderAbout(localizedContent[location]),
-        "#contact" : () => renderContact(localizedContent[location])
-    }[location]()
+
+    let cases = {  
+        "/" : () => renderHome(localizedContent["/"]),
+        "#about" : () => renderAbout(localizedContent["#about"]),
+        "#contact" : () => renderContact(localizedContent["#contact"])
+    }
+    if(cases[location.hash]) cases[location.hash]()
+    else cases["/"]()
 }
 
 export async function init() {

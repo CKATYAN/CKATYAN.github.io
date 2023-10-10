@@ -1,6 +1,10 @@
 {
     "en" : {
         "header" : ["Lorem", "about project", "contact", "русский"],
+        "/" : {
+            "pageName" : "Lorem ipsum",
+            "language" : "en"
+        },
         "#about" : {
             "pageName" : "About project",
             "content" : "Lorem ipsum - simple online tool designed to generate placeholder text for your projects.</br></br>You can quickly and easily create patterned text that simulates the appearance of real content, making it ideal for website mock-ups, graphic design projects."
@@ -12,6 +16,10 @@
     },
     "ru" : {
         "header" : ["Lorem", "о проекте", "контакты", "english"],
+        "/" : {
+            "pageName" : "Lorem ipsum",
+            "language" : "ru"
+        },
         "#about" : {
             "pageName" : "О проекте",
             "content" : "Lorem ipsum - простой онлайн-инструмент, предназначенный для генерации текста-заполнителя для ваших проектов.</br></br>Вы можете быстро и легко создать текст, имитирующий реальное содержимое, что делает его идеальным инструментом для создания макетов сайтов и графического дизайна."
