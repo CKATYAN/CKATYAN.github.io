@@ -4,26 +4,33 @@
     <title>Li</title>
     <meta charset="utf-8">
     <link href="#" rel="shortcut icon">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+
     <link href="https://fonts.cdnfonts.com/css/jmh-typewriter" rel="stylesheet">
+    <link href="css/general_style.css" rel="stylesheet" type="text/css">
     <script src="js/eventListeners.js" type="module" async></script>
 </head>
 <body>
-    <div class="header-stickyContainer">
-        <div class="header-topPartContainer">
+    <div id="header-stickyContainer">
+        <div id="menuToggle">
+            <input type="checkbox">
+            <span class="humburger" id="first"></span>
+            <span class="humburger" id="middle"></span>
+            <span class="humburger" id="last"></span>
+        </div>
+        <div id="header-topPartContainer">
             <a id="home" draggable="false">&nbsp;</a>
             <a id="about" draggable="false">&nbsp;</a>
             <a id="contact" draggable="false">&nbsp;</a>
             <a id="switchLang" draggable="false">&nbsp;</a>
         </div>
-        <div class="header-bottomPartContainer">
+        <div id="header-bottomPartContainer">
             <p id="pageName">&nbsp</p>
-            <img id="copyIcon" class="hidden" src="images/copy icon.svg" draggable="false">
+            <img id="copyIcon" class="hidden" src="images/copyIcon.svg"></img>
         </div>
     </div>
-    <div class="content-scrollableContainer">
+    <div id="content-scrollableContainer">
         <p id="content"></p>
     </div>
-    <div class="footer-stickyContainer"></div>
+    <div id="footer-stickyContainer"></div>
 </body>
 </html>

@@ -1,0 +1,30 @@
+.humburger {
+    transform-origin: 4px 0px;
+  
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+}
+
+span.humburger:first-child {
+    transform-origin: 0% 0%;
+}
+
+span.humberger:nth-last-child(1) {
+    transform-origin: 0% 100%;
+}
+
+input:checked ~ span.humburger {
+    opacity: 1;
+    transform: rotate(45deg) translate(2px, -2px);
+    background: #232323;
+} 
+
+input:checked ~ span.humburger#middle {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+input:checked ~ span.humburger#last {
+    transform: rotate(-45deg);
+}

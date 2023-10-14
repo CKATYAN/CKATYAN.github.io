@@ -1,0 +1,47 @@
+#header-stickyContainer {
+    position: sticky; top: 0;
+    background: inherit;
+    padding-bottom: var(--padding-default);
+
+    #header-topPartContainer, #header-bottomPartContainer {
+        padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
+        padding-top: var(--padding-default);
+
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        & a {
+            text-decoration: none;
+            font-size: var(--font-size-default);
+            font-weight: var(--font-weight-default);
+        }
+
+        #pageName {
+            font-size: var(--font-size-accent);
+            font-weight: var(--font-weight-accent);
+        }
+
+        #copyIcon {
+            width: calc((10/24)*var(--font-size-accent));
+        }
+    }
+}
+
+#content-scrollableContainer {
+    padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
+    padding-top: var(--padding-default);
+
+    #content {
+        text-align: justify;
+        font-size: var(--font-size-default);
+        font-weight: var(--font-weight-accent);
+    }
+}
+
+#footer-stickyContainer {
+    position: sticky; bottom: 0;
+    width: inherit; height: calc(2*var(--padding-default));
+    background: inherit;
+}

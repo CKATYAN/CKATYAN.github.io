@@ -1,0 +1,51 @@
+@import "./mobile/mobile_style.css" screen and (max-device-width: 640px);
+@import "./desktop/desktop_style.css" screen and (min-device-width: 640px);
+
+:root{
+    /* color */
+    --color-default: black;
+    --color-dropshadow: rgba(0, 0, 0, 0.50);
+
+    /* padding */
+    --padding-default: 2dvh;
+    --padding-leftright: 12dvw;
+
+    /* font properties */
+    font-family: "JMH Typewriter";
+    font-display: fallback;
+
+    --font-size-default: clamp(1rem, 1.5vw + 1rem, 3rem);
+    --font-size-accent: clamp(1rem, 5.5vw + 1rem, 8rem);
+
+    --font-weight-default: 250;
+    --font-weight-accent: 700;
+}
+
+*, *::before, *::after {
+    /* all HTML tags have own padding&margin, thus We should remove it */
+    margin: 0; padding: 0;
+}
+
+::selection {
+    text-shadow: 0rem 0.5rem 0.5rem var(--color-dropshadow);
+    background: inherit;
+}
+
+body {
+    background-image: url("../images/bg.avif");
+    background-attachment: fixed;
+    background-size: cover;
+    
+    color: var(--color-default);
+}
+
+a, img {
+    &:hover {
+        filter: drop-shadow(0px 5px 5px var(--color-dropshadow));
+        cursor: pointer;
+    }
+}
+
+.hidden {
+    content-visibility: hidden;
+}
