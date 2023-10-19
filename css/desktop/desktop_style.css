@@ -1,11 +1,14 @@
+#menuToggle {
+    display: none;
+}
+
 #header-stickyContainer {
     position: sticky; top: 0;
     background: inherit;
-    padding-bottom: var(--padding-default);
+    padding: var(--padding-top) 0 var(--padding-top) 0;
 
     #header-topPartContainer, #header-bottomPartContainer {
         padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
-        padding-top: var(--padding-default);
 
         display: flex; 
         flex-direction: row;
@@ -31,7 +34,6 @@
 
 #content-scrollableContainer {
     padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
-    padding-top: var(--padding-default);
 
     #content {
         text-align: justify;
@@ -42,6 +44,6 @@
 
 #footer-stickyContainer {
     position: sticky; bottom: 0;
-    width: inherit; height: calc(2*var(--padding-default));
+    width: inherit; height: var(--padding-top);
     background: inherit;
 }

@@ -17,7 +17,7 @@ const renderHome = async localizedHomeContent => {
 
     document.getElementById("copyIcon").classList.remove("hidden")
     await import("./lorem-ipsum.js").then(module => {
-        document.getElementById("content").textContent = new module.LoremIpsum().generate(55)
+        document.getElementById("content").textContent = new module.LoremIpsum().generate(50)
     })
     // TO DO: try to make russian version
     // TO DO: try to calculate amount of generated word

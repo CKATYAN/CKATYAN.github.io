@@ -1,13 +1,13 @@
-@import "./mobile/mobile_style.css" screen and (max-device-width: 640px);
-@import "./desktop/desktop_style.css" screen and (min-device-width: 640px);
+@import "./mobile/mobile_style.css" screen and (max-width: 640px);
+@import "./desktop/desktop_style.css" screen and (min-width: 640px);
 
-:root{
+:root {
     /* color */
     --color-default: black;
     --color-dropshadow: rgba(0, 0, 0, 0.50);
 
     /* padding */
-    --padding-default: 2dvh;
+    --padding-top: 6dvh;
     --padding-leftright: 12dvw;
 
     /* font properties */

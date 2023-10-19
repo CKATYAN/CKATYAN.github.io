@@ -1,40 +1,76 @@
 @import "./animation.css";
 
-#menuToggle {
-    display: block;
-    position: relative;
-    top: 50px;
-    left: 50px;
+#header-stickyContainer {
+    position: sticky; top: 0;
+    background: inherit;
+    padding: var(--padding-top) 0 var(--padding-top) 0;
 
-    z-index: 1;
-
-    -webkit-user-select: none;
-    user-select: none;
-
-    input {
-        display: block;
-        width: 40px;
-        height: 32px;
-        position: absolute;
-        top: -7px;
-        left: -5px;
-        
-        cursor: pointer;
-        
-        opacity: 0; /* hide this */
-        z-index: 2; /* and place it over the hamburger */
+    #menuToggle {
+        padding-left: var(--padding-leftright);
+    
+        -webkit-user-select: none;
+        user-select: none;
+    
+        input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+            
+            cursor: pointer;
+            
+            opacity: 0; /* hide this */
+            z-index: 1; /* and place it over the hamburger */
+        }
+    
+        .humburger {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            
+            background: var(--color-default);
+            border-radius: 3px;
+        }
     }
 
-    .humburger {
-        display: block;
-        width: 33px;
-        height: 4px;
-        margin-bottom: 5px;
-        position: relative;
-        
-        background: #232323;
-        border-radius: 3px;
-        
-        z-index: 1;
+    #header-topPartContainer, #header-bottomPartContainer {
+        padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
+
+        display: flex;
+        flex-flow: column;
+
+        & a {
+            text-decoration: none;
+            font-size: var(--font-size-default);
+            font-weight: var(--font-weight-default);
+        }
+
+        #pageName {
+            font-size: var(--font-size-accent);
+            font-weight: var(--font-weight-accent);
+        }
+
+        #copyIcon {
+            width: calc((10/24)*var(--font-size-accent));
+        }
     }
+}
+
+#content-scrollableContainer {
+    padding: 0 var(--padding-leftright) 0 var(--padding-leftright);
+
+    #content {
+        text-align: justify;
+        font-size: var(--font-size-default);
+        font-weight: var(--font-weight-accent);
+    }
+}
+
+#footer-stickyContainer {
+    position: sticky; bottom: 0;
+    width: inherit; height: var(--padding-top);
+    background: inherit;
 }
